@@ -4,14 +4,18 @@ import { Link, useLocation } from "react-router-dom";
 import { useState } from "react";
 import DashIcon from "components/icons/DashIcon";
 import { useNavigate } from "react-router-dom";
+import RequestedUser from "views/admin/tables/components/RequestedUser";
 // chakra imports
 
 export function SidebarLinks(props) {
   const [selectedOption, setSelectedOption] = useState("");
+  let location = useLocation();
 
+  const allowedPaths = ["all-user","requested-user","active-user","deactiveted-user","rejected-user","terminated-user","pending-payment","expire-subscription","deactivated-account"];
+  const pathSegments = location.pathname.split('/');
+  const lastSegment = pathSegments[pathSegments.length - 1];
   const navigation = useNavigate();
   // Chakra color mode
-  let location = useLocation();
 
   const { routes } = props;
   const handleSelectChange = (event) => {
@@ -62,22 +66,23 @@ export function SidebarLinks(props) {
                     {route.name}
                   </p>
                   </span>
-                  
-                  {location.pathname === "/admin/all-user" &&  (
-                    <ul className="text-gray-500 dark:text-gray-400 flex flex-col pl-6 pt-1">
-                      {route.optionNames?.map((item, index) => (
-                         <Link
-                         className="py-1"
-                         key={index}
-                         to={route.layout + "/" + route.optionPaths[index]}
-                       >
-                         <li className="my-1 ml-4 font-medium text-gray-600">
-                           {item}
-                         </li>
-                       </Link>
-                      ))}
-                    </ul>
-                  )}
+                  {
+                    allowedPaths.includes(lastSegment ) && (
+                      <ul className="text-gray-500 dark:text-gray-400 flex flex-col pl-6 pt-1">
+                        {route.optionNames?.map((item, index) => (
+                          <Link
+                            className="py-1"
+                            key={index}
+                            to={route.layout + "/" + route.optionPaths[index]}
+                          >
+                            <li className="my-1 ml-4 font-medium text-gray-600">
+                              {item}
+                            </li>
+                          </Link>
+                        ))}
+                      </ul>
+                    )
+                  }
                 </li>
 
                 {activeRoute(route.path) ? (

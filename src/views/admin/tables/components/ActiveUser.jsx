@@ -73,6 +73,7 @@ const ActiveUser = () => {
     }
     return buttons;
   };
+  console.log("active");
   const previousPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);

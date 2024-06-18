@@ -21,6 +21,7 @@ const RejectedUser = () => {
   let activeUsers = registrationData.filter(
     (items) => items.status == "rejected"
   );
+  console.log("rejected");
   let newData = activeUsers?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );

@@ -4,58 +4,58 @@ import Icon from "../../../../assets/svg/icon.svg";
 import { DownloadTableExcel } from "react-export-table-to-excel";
 
 
-const DeactivatedUser = () => {
-  const [registrationData, setRegistrationData] = useState([]);
-  const [updateState, setUpdateState] = useState(false);
+const DeactivatedAccount = () => {
+  // const [registrationData, setRegistrationData] = useState([]);
+  // const [updateState, setUpdateState] = useState(false);
   const tableRef = useRef(null);
 
-  useEffect(() => {
-    axios.get("http://localhost:3005/get-formData").then((res) => {
-      setRegistrationData(res.data);
-    });
-  }, []);
-  useEffect(() => {
-    axios.get("http://localhost:3005/get-formData").then((res) => {
-      setRegistrationData(res.data);
-    });
-  }, [updateState]);
-  let activeUsers = registrationData.filter(
-    (items) => items.status == "deactivatedAccount"
-  );
-  let newData = activeUsers?.sort(
-    (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  );
-  const handleChange = (listing, e) => {
-    const updatedStatus = e.target.value;
-     <div className="mt-10 flex justify-center">
-          {currentPage > 1 && (
-            <button
-              onClick={previousPage}
-              className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm
-          font-medium me-2 hover:bg-gray-100 "
-            >
-              Previous
-            </button>
-          )}
-          {generatePageButtons()}
-          {currentPage < totalPages && (
-            <button
-              onClick={nextPage}
-              className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 "
-            >
-              Next
-            </button>
-          )}
-        </div>
-    if (updatedStatus !== "") {
-      const updatedListing = { ...listing, status: updatedStatus };
-      axios
-        .put("http://localhost:3005/put-Registration", updatedListing)
-        .then(() => {
-          setUpdateState(!updateState);
-        });
-    }
-  };
+  // useEffect(() => {
+  //   axios.get("http://localhost:3005/get-formData").then((res) => {
+  //     setRegistrationData(res.data);
+  //   });
+  // }, []);
+  // useEffect(() => {
+  //   axios.get("http://localhost:3005/get-formData").then((res) => {
+  //     setRegistrationData(res.data);
+  //   });
+  // }, [updateState]);
+  // let activeUsers = registrationData.filter(
+  //   (items) => items.status == "deactivatedAccount"
+  // );
+  // let newData = activeUsers?.sort(
+  //   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
+  // );
+  // const handleChange = (listing, e) => {
+  //   const updatedStatus = e.target.value;
+  //    <div className="mt-10 flex justify-center">
+  //         {currentPage > 1 && (
+  //           <button
+  //             onClick={previousPage}
+  //             className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm
+  //         font-medium me-2 hover:bg-gray-100 "
+  //           >
+  //             Previous
+  //           </button>
+  //         )}
+  //         {generatePageButtons()}
+  //         {currentPage < totalPages && (
+  //           <button
+  //             onClick={nextPage}
+  //             className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 "
+  //           >
+  //             Next
+  //           </button>
+  //         )}
+  //       </div>
+  //   if (updatedStatus !== "") {
+  //     const updatedListing = { ...listing, status: updatedStatus };
+  //     axios
+  //       .put("http://localhost:3005/put-Registration", updatedListing)
+  //       .then(() => {
+  //         setUpdateState(!updateState);
+  //       });
+  //   }
+  // };
   // const [currentPage, setCurrentPage] = useState(1);
 // const itemsPerPage = 1;
 // const totalItems = newData?.length;
@@ -173,7 +173,7 @@ const DeactivatedUser = () => {
           </tr>
         </thead>
         <tbody>
-          {newData?.map((items, index) => {
+          {/* {newData?.map((items, index) => {
             return (
               <tr
                 class="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -217,7 +217,7 @@ const DeactivatedUser = () => {
                 </td>
               </tr>
             );
-          })}
+          })} */}
         </tbody>
       </table>
         {/* <div className="mt-10 flex justify-center">
@@ -244,4 +244,4 @@ const DeactivatedUser = () => {
   );
 };
 
-export default DeactivatedUser;
+export default DeactivatedAccount;

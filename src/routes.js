@@ -1,6 +1,5 @@
 import React from "react";
 import MainDashboard from "views/admin/default";
-import Subscription from "views/admin/marketplace/index";
 import Profile from "views/admin/profile";
 import AllUser from "./views/admin/tables/components/AllUser";
 import ActiveUser from "views/admin/tables/components/ActiveUser";
@@ -9,13 +8,13 @@ import DeactivatedUser from "views/admin/tables/components/DeactivatedUser";
 import TerminatedUser from "views/admin/tables/components/TerminatedUser.jsx";
 import RejectedUser from "views/admin/tables/components/RejectedUser";
 import ExpireSubscription from "views/admin/tables/components/ExpireSubscription";
+import DeactivatedAccount from "views/admin/tables/components/DeactivatedAccount"
 
 // Icon Imports
 import {
   MdHome,
   MdBarChart,
   MdPerson,
-  MdOutlineSubscriptions,
 } from "react-icons/md";
 import { RiCoupon3Line } from "react-icons/ri";
 import PendingPayment from "views/admin/tables/components/PendingPayment";
@@ -38,18 +37,18 @@ const routes = [
     icon: <MdBarChart className="h-6 w-6" />,
     component: <AllUser />,
   },
-  {
-    names: "Requested User",
-    layout: "/admin",
-    path: "requested-user",
-    component: <RequestedUser />,
-  },
-  {
-    names: "Active User",
-    layout: "/admin",
-    path: "active-user",
-    component: <ActiveUser />,
-  },
+  // {
+  //   names: "Requested User",
+  //   layout: "/all-user-requested",
+  //   path: "requested-user",
+  //   component: <RequestedUser />,
+  // },
+  // {
+  //   names: "Active User",
+  //   layout: "/all-user",
+  //   path: "active-user",
+  //   component: <ActiveUser />,
+  // },
 
   {
     names: "DeActiveted User",
@@ -86,7 +85,7 @@ const routes = [
     names: "Deactivated Account",
     layout: "/admin",
     path: "deactivated-account",
-    component: <ExpireSubscription />,
+    component: <DeactivatedAccount />,
   },
   {
     name: "Coupon",
@@ -96,15 +95,6 @@ const routes = [
     component: <Coupon />,
     secondary: true,
   },
-  {
-    name: "Subscription",
-    layout: "/admin",
-    path: "subscription",
-    icon: <MdOutlineSubscriptions className="h-6 w-6" />,
-    component: <Subscription />,
-    secondary: true,
-  },
-
   {
     name: "Profile",
     layout: "/admin",
