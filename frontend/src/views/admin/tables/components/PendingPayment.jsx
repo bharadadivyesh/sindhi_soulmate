@@ -13,7 +13,7 @@ const PendingPayment = () => {
     });
   }, []);
   let activeUsers = registrationData.filter(
-    (items) => items.step < 9
+    (items) => items.step < 8
   );
   let newData = activeUsers?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
