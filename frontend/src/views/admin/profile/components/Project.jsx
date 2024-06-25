@@ -4,6 +4,7 @@ import image1 from "assets/img/profile/image1.png";
 import image2 from "assets/img/profile/image2.png";
 import image3 from "assets/img/profile/image3.png";
 import Card from "components/card";
+import { Link } from "react-router-dom";
 
 const Project = () => {
   return (
@@ -29,12 +30,12 @@ const Project = () => {
             </p>
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
-              <a
+              <Link
+                to=""
                 className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-                href=" "
               >
                 See product details
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -54,12 +55,12 @@ const Project = () => {
             </p>
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
-              <a
+              <Link
+                to=""
                 className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-                href=" "
               >
                 See product details
-              </a>
+              </Link>
             </p>
           </div>
         </div>
@@ -79,12 +80,12 @@ const Project = () => {
             </p>
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
-              <a
+              <Link
+                to=""
                 className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-                href=" "
               >
                 See product details
-              </a>
+              </Link>
             </p>
           </div>
         </div>

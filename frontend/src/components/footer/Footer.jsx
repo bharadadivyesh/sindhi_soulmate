@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 const Footer = () => {
   return (
     <div className="flex w-full flex-col items-center justify-between px-1 pb-8 pt-3 lg:px-8 xl:flex-row">
@@ -9,40 +11,40 @@ const Footer = () => {
       <div>
         <ul className="flex flex-wrap items-center gap-3 sm:flex-nowrap md:gap-10">
           <li>
-            <a
+            <Link
               target="blank"
-              href="mailto:hello@simmmple.com"
+              to="mailto:hello@simmmple.com"
               className="text-base font-medium text-gray-600 hover:text-gray-600"
             >
               Support
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               target="blank"
-              href="https://simmmple.com/licenses"
+              to="https://simmmple.com/licenses"
               className="text-base font-medium text-gray-600 hover:text-gray-600"
             >
               License
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               target="blank"
-              href="https://simmmple.com/terms-of-service"
+              to="https://simmmple.com/terms-of-service"
               className="text-base font-medium text-gray-600 hover:text-gray-600"
             >
               Terms of Use
-            </a>
+            </Link>
           </li>
           <li>
-            <a
+            <Link
               target="blank"
-              href="https://blog.horizon-ui.com/"
+              to="https://blog.horizon-ui.com/"
               className="text-base font-medium text-gray-600 hover:text-gray-600"
             >
               Blog
-            </a>
+            </Link>
           </li>
         </ul>
       </div>

@@ -121,7 +121,7 @@ const Coupon = () => {
               >
                 &times;
               </button>
-              <h2 class="text-center text-4xl dark:text-white">
+              <h2 className="text-center text-4xl dark:text-white">
                 {couponTitleTOggle === true ? "Update Coupon" : "Create Coupon"}
               </h2>
               <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
@@ -245,37 +245,37 @@ const Coupon = () => {
           )}
         </Popup>
       </div>
-      <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
-        <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+      <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
+        <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               No.
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Coupon Code
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Subscription Type
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Discount Type
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Discount Value
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               After Discount
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Start Date
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Expire Date
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Status
             </th>
-            <th scope="col" class="px-6 py-3">
+            <th scope="col" className="px-6 py-3">
               Action
             </th>
           </tr>
@@ -283,44 +283,44 @@ const Coupon = () => {
         <tbody>
           {couponData.map((items, index) => {
             return (
-              <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+              <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
                 <th
                   scope="row"
-                  class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white"
+                  className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white"
                 >
                   {index + 1}
                 </th>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.code}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.subscriptionType}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.discountType}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.discountType === "Absolute"
                     ? `₹ ${items.discountValue}`
                     : `${items.discountValue} %`}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {"After Discount"}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.startDate.split("T")[0].split("-").reverse().join("/")}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.expireDate
                     .split("T")[0]
                     .split("-")
                     .reverse()
                     .join("/")}
                 </td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   {items.status}
                 </td>
-                <td class="flex gap-2 px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="flex gap-2 px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   <MdModeEdit
                     onClick={() => handleEditBtnClick(items)}
                     className="cursor-pointer"

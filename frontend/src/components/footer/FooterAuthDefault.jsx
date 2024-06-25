@@ -1,44 +1,45 @@
 /*eslint-disable*/
 import React from "react";
+import { Link } from "react-router-dom";
 export default function Footer() {
   return (
     <div className="z-[5] mx-auto flex w-full max-w-screen-sm flex-col items-center justify-between px-[20px] pb-4 lg:mb-6 lg:max-w-[100%] lg:flex-row xl:mb-2 xl:w-[1310px] xl:pb-6">
       <ul className="flex flex-wrap items-center sm:flex-nowrap">
         <li className="mr-12">
-          <a
+          <Link
             target="blank"
-            href="mailto:hello@simmmple.com"
+            to="mailto:hello@simmmple.com"
             className="text-sm text-gray-600 hover:text-gray-600 md:text-base lg:text-white lg:hover:text-white"
           >
             Support
-          </a>
+          </Link>
         </li>
         <li className="mr-12">
-          <a
+          <Link
+            to="https://simmmple.com/licenses"
             target="blank"
-            href="https://simmmple.com/licenses"
             className="text-sm text-gray-600 hover:text-gray-600 md:text-base lg:text-white lg:hover:text-white"
           >
             License
-          </a>
+          </Link>
         </li>
         <li className="mr-12">
-          <a
+          <Link
+            to="https://simmmple.com/terms-of-service"
             target="blank"
-            href="https://simmmple.com/terms-of-service"
             className="text-sm text-gray-600 hover:text-gray-600 md:text-base lg:text-white lg:hover:text-white"
           >
             Terms of Use
-          </a>
+          </Link>
         </li>
         <li>
-          <a
+          <Link
             target="blank"
-            href="https://blog.horizon-ui.com/"
+            to="https://blog.horizon-ui.com/"
             className="text-sm text-gray-600 hover:text-gray-600 md:text-base lg:text-white lg:hover:text-white"
           >
             Blog
-          </a>
+          </Link>
         </li>
       </ul>
     </div>

@@ -82,7 +82,7 @@ const RejectedUser = () => {
     }
   };
   return (
-    <div class="relative overflow-x-auto">
+    <div className="relative overflow-x-auto">
        <div className="flex justify-end">
        <DownloadTableExcel
           filename="Rejected User"
@@ -98,31 +98,31 @@ const RejectedUser = () => {
           </button>
         </DownloadTableExcel>
       </div>
-      <table class="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400" ref={tableRef}>
-        <thead class="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+      <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400" ref={tableRef}>
+        <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-          <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+          <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               No.
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               Date
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               FirstName
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               LastName
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               Email
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               Phone
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               Remarks
             </th>
-            <th scope="col" class="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">
               Action
             </th>
           </tr>
@@ -130,11 +130,11 @@ const RejectedUser = () => {
         <tbody>
           {currentItems?.map((items, index) => {
             return (
-              <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{index + 1}</td>
+              <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{index + 1}</td>
                 <th
                   scope="row"
-                  class="whitespace-nowrap px-6 py-4 text-sm font-bold text-navy-700 dark:text-white"
+                  className="whitespace-nowrap px-6 py-4 text-sm font-bold text-navy-700 dark:text-white"
                 >
                   {new Date(
                     new Date(items.createdAt).getTime() + 5.5 * 60 * 60 * 1000
@@ -144,12 +144,12 @@ const RejectedUser = () => {
                     day: "numeric",
                   })}
                 </th>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.firstName}</td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.lastName}</td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.mobileNumber}</td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.remarks}</td>
-                <td class="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.firstName}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.lastName}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.mobileNumber}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.remarks}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                   <select onChange={(e) => handleChange(items, e)}>
                     <option value="">Select Option</option>
                     <option value="Active">Active</option>

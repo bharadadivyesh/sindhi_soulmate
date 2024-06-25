@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useId } from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
@@ -120,7 +120,7 @@ export default function Admin(props) {
               secondary={getActiveNavbar(routes)}
               {...rest}
             />
-            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-7 md:pr-2">
+            <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-7 md:pr-2" >
               <Routes>
                 {getRoutes(routes)}
                 <Route

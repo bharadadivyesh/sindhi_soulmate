@@ -42,14 +42,14 @@ const TerminatedUser = (props) => {
     initialState.pageSize = 11;
   return (
     <Card extra={"w-full h-full p-4"}>
-      <div class="relative flex items-center justify-between">
-        <div class="text-xl font-bold text-navy-700 dark:text-white">
+      <div className="relative flex items-center justify-between">
+        <div className="text-xl font-bold text-navy-700 dark:text-white">
         Terminated User
         </div>
         <CardMenu />
       </div>
 
-      <div class="h-full overflow-x-scroll xl:overflow-x-hidden">
+      <div className="h-full overflow-x-scroll xl:overflow-x-hidden">
         <table
           {...getTableProps()}
           className="mt-8 h-max w-full"
