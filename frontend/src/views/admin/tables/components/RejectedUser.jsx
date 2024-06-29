@@ -85,7 +85,7 @@ const RejectedUser = () => {
     <div className="relative overflow-x-auto">
        <div className="flex justify-end">
        <DownloadTableExcel
-          filename="Rejected User"
+          filename="Rejected Users"
           sheet="users"
           currentTableRef={tableRef.current}
         >

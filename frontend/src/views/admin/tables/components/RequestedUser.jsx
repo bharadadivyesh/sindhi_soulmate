@@ -175,7 +175,7 @@ const RequestedUser = () => {
       </div>
       <div className="flex justify-end">
         <DownloadTableExcel
-          filename="Requested User"
+          filename="Requested Users"
           sheet="users"
           currentTableRef={tableRef.current}
         >

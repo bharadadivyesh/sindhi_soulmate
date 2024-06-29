@@ -86,7 +86,7 @@ const DeactivatedUser = () => {
     <div className="relative overflow-x-auto">
       <div className="flex justify-end">
       <DownloadTableExcel
-          filename="Deactivated User"
+          filename="Deactivated Users"
           sheet="users"
           currentTableRef={tableRef.current}
         >

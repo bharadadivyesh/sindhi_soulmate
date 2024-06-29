@@ -93,7 +93,7 @@ const ActiveUser = () => {
     <div className="relative overflow-x-auto">
       <div className="flex justify-end">
         <DownloadTableExcel
-          filename="Active User"
+          filename="Active Users"
           sheet="users"
           currentTableRef={tableRef.current}
         >
@@ -106,109 +106,31 @@ const ActiveUser = () => {
           </button>
         </DownloadTableExcel>
       </div>
-      <table
-        className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400"
-        ref={tableRef}
-      >
+      <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400"ref={tableRef}>
         <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              No.
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              Date
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              FirstName
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              LastName
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              Email
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              Phone
-            </th>
-            <th
-              scope="col"
-              className="cursor-pointer px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-              onClick={handleSort}
-            >
-              Subscription Ex.
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              Status
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"
-            >
-              Action
-            </th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">No.</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">Date</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">FirstName</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">LastName</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">Email</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">Phone</th>
+            <th scope="col"className="cursor-pointer px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none"onClick={handleSort}>Subscription Ex.</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">Status</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600 select-none">Action</th>
           </tr>
         </thead>
         <tbody>
           {currentItems?.map((items, index) => (
-            <tr
-              className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-              key={index}
-            >
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {index + 1}
-              </td>
-              <td className="whitespace-nowrap px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {new Date(
-                  new Date(items.createdAt).getTime() + 5.5 * 60 * 60 * 1000
-                ).toLocaleDateString("en-IN", {
-                  year: "numeric",
-                  month: "numeric",
-                  day: "numeric",
-                })}
-              </td>
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {items.firstName}
-              </td>
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {items.lastName}
-              </td>
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {items.email}
-              </td>
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {items.mobileNumber}
-              </td>
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {items.expirationDate
-                  .split("T")[0]
-                  .split("-")
-                  .reverse()
-                  .join("/")}
-              </td>
-              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                {items.status}
-              </td>
+            <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"key={index}>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{index + 1}</td>
+              <td className="whitespace-nowrap px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{new Date(new Date(items.createdAt).getTime() + 5.5 * 60 * 60 * 1000).toLocaleDateString("en-IN", {year: "numeric",month: "numeric",day: "numeric",})}</td>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.firstName}</td>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.lastName}</td>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.mobileNumber}</td>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.expirationDate.split("T")[0].split("-").reverse().join("/")}</td>
+              <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.status}</td>
               <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
                 <select onChange={(e) => handleChange(items, e)}>
                   <option value="">Select Option</option>
@@ -222,21 +144,11 @@ const ActiveUser = () => {
       <div>
         <div className="mt-10 flex justify-center">
           {currentPage > 1 && (
-            <button
-              onClick={previousPage}
-              className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 "
-            >
-              Previous
-            </button>
+            <button onClick={previousPage} className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 ">Previous</button>
           )}
           {generatePageButtons()}
           {currentPage < totalPages && (
-            <button
-              onClick={nextPage}
-              className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 "
-            >
-              Next
-            </button>
+            <button onClick={nextPage}className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 ">Next</button>
           )}
         </div>
       </div>

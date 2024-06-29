@@ -65,7 +65,7 @@ const AllUser = () => {
     <div className="relative overflow-x-auto">
         <div className="flex justify-end">
         <DownloadTableExcel
-          filename="All User"
+          filename="All Users"
           sheet="users"
           currentTableRef={tableRef.current}
         >

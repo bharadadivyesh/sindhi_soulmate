@@ -5,7 +5,7 @@ const Navbar = (props) => {
   const { brandText } = props;
 
   return (
-    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white/10 p-2">
+    <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white p-2">
       <div className="ml-[6px]">
         <div className="h-6 w-[224px] pt-1">
           <Link

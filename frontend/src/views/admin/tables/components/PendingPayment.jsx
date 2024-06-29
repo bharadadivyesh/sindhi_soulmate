@@ -69,7 +69,7 @@ const PendingPayment = () => {
     <div className="relative overflow-x-auto">
       <div className="flex justify-end">
       <DownloadTableExcel
-          filename="Pending Payment"
+          filename="Pending Payments"
           sheet="users"
           currentTableRef={tableRef.current}
         >

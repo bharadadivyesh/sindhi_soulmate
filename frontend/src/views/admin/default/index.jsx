@@ -53,9 +53,10 @@ const Dashboard = () => {
     (items) => items.status === "DeactivatedAccount"
   );
   const totalRevenue = RegisteredUsers?.reduce((total, user) => {
-    let totalRevenuePrice = total + user.discountedPrice;
+    const price = user.discountedPrice !== undefined ? user.discountedPrice : user.price;
+    let totalRevenuePrice = total + price;
     return totalRevenuePrice;
-  }, 0);
+}, 0);
 
   return (
     <div>

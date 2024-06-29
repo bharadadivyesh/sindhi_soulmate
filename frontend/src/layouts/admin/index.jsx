@@ -12,6 +12,8 @@ import TerminatedUser from "views/admin/tables/components/TerminatedUser";
 import PendingPayment from "views/admin/tables/components/PendingPayment";
 import ExpireSubscription from "views/admin/tables/components/ExpireSubscription";
 import DeactivatedAccount from "views/admin/tables/components/DeactivatedAccount";
+import OpenTicket from "views/admin/TicketSupport/components/OpenTicket";
+import CloseTicket from "views/admin/TicketSupport/components/CloseTicket";
 
 export default function Admin(props) {
   const { ...rest } = props;
@@ -95,6 +97,16 @@ export default function Admin(props) {
             <Route path="/deactivated-account" element={<DeactivatedAccount />} />
           )
         }
+        else if(location.pathname === "/admin/open-ticket"){
+          return(
+            <Route path="/open-ticket" element={<OpenTicket />}/>
+          )
+        }
+        else if(location.pathname === "/admin/close-ticket"){
+          return(
+            <Route path="/close-ticket" element={<CloseTicket />}/>
+          )
+        }
         return (
           <Route path={`/${prop.path}`} element={prop.component} key={key} />
         );
@@ -111,7 +123,6 @@ export default function Admin(props) {
         <main
           className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
         >
-          {/* Routes */}
           <div className="h-full">
             <Navbar
               onOpenSidenav={() => setOpen(true)}

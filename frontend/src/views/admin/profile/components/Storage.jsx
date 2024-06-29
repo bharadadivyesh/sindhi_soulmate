@@ -8,7 +8,6 @@ const Storage = () => {
       <div className="ml-auto">
         <CardMenu />
       </div>
-      {/* Your storage */}
       <div className="mb-auto flex flex-col items-center justify-center">
         <div className="mt-2 flex items-center justify-center rounded-full bg-lightPrimary p-[26px] text-5xl font-bold text-brand-500 dark:!bg-navy-700 dark:text-white">
           <BsCloudCheck />
@@ -20,9 +19,6 @@ const Storage = () => {
           Supervise your drive space in the easiest way
         </p>
       </div>
-
-      {/* Progress bar */}
-
       <div className="flex flex-col">
         <div className="flex justify-between">
           <p className="text-sm font-medium text-gray-600">25.6 GB</p>
@@ -35,5 +31,4 @@ const Storage = () => {
     </Card>
   );
 };
-
 export default Storage;

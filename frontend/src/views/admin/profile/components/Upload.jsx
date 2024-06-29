@@ -1,7 +1,6 @@
 import { MdFileUpload } from "react-icons/md";
 import Card from "components/card";
 import React from "react";
-
 const Upload = () => {
   return (
     <Card className="grid h-full w-full grid-cols-1 gap-3 rounded-[20px] bg-white bg-clip-border p-3 font-dm shadow-3xl shadow-shadow-500 dark:!bg-navy-800 dark:shadow-none 2xl:grid-cols-11">
@@ -16,7 +15,6 @@ const Upload = () => {
           </p>
         </button>
       </div>
-
       <div className="col-span-5 flex h-full w-full flex-col justify-center overflow-hidden rounded-xl bg-white pl-3 pb-4 dark:!bg-navy-800">
         <h5 className="text-left text-xl font-bold leading-9 text-navy-700 dark:text-white">
           Complete Your Profile
@@ -35,5 +33,4 @@ const Upload = () => {
     </Card>
   );
 };
-
 export default Upload;

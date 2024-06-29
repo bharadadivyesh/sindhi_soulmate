@@ -5,7 +5,6 @@ import image2 from "assets/img/profile/image2.png";
 import image3 from "assets/img/profile/image3.png";
 import Card from "components/card";
 import { Link } from "react-router-dom";
-
 const Project = () => {
   return (
     <Card extra={"w-full p-4 h-full"}>
@@ -18,7 +17,6 @@ const Project = () => {
           engaged by providing meaningful information.
         </p>
       </div>
-      {/* Project 1 */}
       <div className="flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex items-center">
           <div className="">
@@ -30,12 +28,7 @@ const Project = () => {
             </p>
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
-              <Link
-                to=""
-                className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              >
-                See product details
-              </Link>
+              <Link to="" className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"> See product details </Link>
             </p>
           </div>
         </div>
@@ -43,7 +36,6 @@ const Project = () => {
           <MdModeEditOutline />
         </div>
       </div>
-      {/* Project 1 */}
       <div className="mt-3 flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex items-center">
           <div className="">
@@ -55,12 +47,7 @@ const Project = () => {
             </p>
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
-              <Link
-                to=""
-                className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              >
-                See product details
-              </Link>
+              <Link to="" className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white" > See product details </Link>
             </p>
           </div>
         </div>
@@ -68,7 +55,6 @@ const Project = () => {
           <MdModeEditOutline />
         </div>
       </div>
-      {/* Project 1 */}
       <div className="mt-3 flex w-full items-center justify-between rounded-2xl bg-white p-3 shadow-3xl shadow-shadow-500 dark:!bg-navy-700 dark:shadow-none">
         <div className="flex items-center">
           <div className="">
@@ -80,12 +66,7 @@ const Project = () => {
             </p>
             <p className="mt-2 text-sm text-gray-600">
               Project #1 .
-              <Link
-                to=""
-                className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white"
-              >
-                See product details
-              </Link>
+              <Link to="" className="ml-1 font-medium text-brand-500 hover:text-brand-500 dark:text-white" > See product details </Link>
             </p>
           </div>
         </div>
@@ -96,5 +77,4 @@ const Project = () => {
     </Card>
   );
 };
-
 export default Project;

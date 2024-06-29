@@ -1,37 +1,23 @@
 /* eslint-disable */
 import React from "react";
-import { Link, useLocation } from "react-router-dom";
-import { useState } from "react";
-import DashIcon from "components/icons/DashIcon";
-import { useNavigate } from "react-router-dom";
-import RequestedUser from "views/admin/tables/components/RequestedUser";
-// chakra imports
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 export function SidebarLinks(props) {
-  const [selectedOption, setSelectedOption] = useState("");
   let location = useLocation();
+  const navigate = useNavigate()
 
-  const allowedPaths = ["all-user","requested-user","active-user","deactiveted-user","rejected-user","terminated-user","pending-payment","expire-subscription","deactivated-account"];
+  const allUserPaths = ["all-user","requested-user","active-user","deactiveted-user","rejected-user","terminated-user","pending-payment","expire-subscription","deactivated-account"];
+  const ticketPaths = ["ticket","open-ticket","close-ticket"];
+
   const pathSegments = location.pathname.split('/');
   const lastSegment = pathSegments[pathSegments.length - 1];
-  const navigation = useNavigate();
-  // Chakra color mode
-
   const { routes } = props;
-  const handleSelectChange = (event) => {
-    const selectedValue = event.target.value;
-    setSelectedOption(selectedValue);
-    if (selectedValue) {
-      navigation(`/admin/${selectedValue}`);
-    }
-  };
-
-  // verifies if routeName is the one active (in browser input)
   const activeRoute = (routeName) => {
     return location.pathname.includes(routeName);
   };
-  
-
+  if(location.pathname == "/admin/ticket"){
+    navigate("/admin/open-ticket")
+  }
   const createLinks = (routes) => {
     return routes.map((route, index) => {
       if (
@@ -65,17 +51,31 @@ export function SidebarLinks(props) {
                     {route.name}
                   </p>
                   </span>
-                  {
-                    allowedPaths.includes(lastSegment ) && (
+                  {allUserPaths.includes(lastSegment) && (
                       <ul className="text-gray-500 dark:text-gray-400 flex flex-col pl-6 pt-1 list-disc">
                         {route.optionNames?.map((item, index) => (
                           <Link
-                          
                             className="py-1"
                             key={index}
                             to={route.layout + "/" + route.optionPaths[index]}
                           >
                             <li key={index} className={`my-1 ml-4 font-medium text-gray-600 ${activeRoute(`/admin/${route.optionPaths[index]}`) ? "font-extrabold text-brand-700 dark:text-white" : "font-medium text-gray-600"}`}>
+                              {item}
+                            </li>
+                          </Link>
+                        ))}
+                      </ul>
+                    )
+                  }
+                   { ticketPaths.includes(lastSegment) && (
+                      <ul className="text-gray-500 dark:text-gray-400 flex flex-col pl-6 pt-1 list-disc">
+                        {route.optionName?.map((item, index) => (
+                          <Link
+                            className="py-1"
+                            key={index}
+                            to={route.layout + "/" + route.optionPath[index]}
+                          >
+                            <li key={index} className={`my-1 ml-4 font-medium text-gray-600 ${activeRoute(`/admin/${route.optionPath[index]}`) ? "font-extrabold text-brand-700 dark:text-white" : "font-medium text-gray-600"}`}>
                               {item}
                             </li>
                           </Link>

@@ -1,112 +1,73 @@
 import { useRef } from "react";
-// import axios from "axios";
+import axios from "axios";
 import Icon from "../../../../assets/svg/icon.svg";
 import { DownloadTableExcel } from "react-export-table-to-excel";
+import { useState,useEffect } from "react";
 
 
 const DeactivatedAccount = () => {
-  // const [registrationData, setRegistrationData] = useState([]);
-  // const [updateState, setUpdateState] = useState(false);
+  const [registrationData, setRegistrationData] = useState([]);
   const tableRef = useRef(null);
 
-  // useEffect(() => {
-  //   axios.get("http://localhost:3005/get-formData").then((res) => {
-  //     setRegistrationData(res.data);
-  //   });
-  // }, []);
-  // useEffect(() => {
-  //   axios.get("http://localhost:3005/get-formData").then((res) => {
-  //     setRegistrationData(res.data);
-  //   });
-  // }, [updateState]);
-  // let activeUsers = registrationData.filter(
-  //   (items) => items.status == "DeactivatedAccount"
-  // );
-  // let newData = activeUsers?.sort(
-  //   (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
-  // );
-  // const handleChange = (listing, e) => {
-  //   const updatedStatus = e.target.value;
-  //    <div className="mt-10 flex justify-center">
-  //         {currentPage > 1 && (
-  //           <button
-  //             onClick={previousPage}
-  //             className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm
-  //         font-medium me-2 hover:bg-gray-100 "
-  //           >
-  //             Previous
-  //           </button>
-  //         )}
-  //         {generatePageButtons()}
-  //         {currentPage < totalPages && (
-  //           <button
-  //             onClick={nextPage}
-  //             className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 "
-  //           >
-  //             Next
-  //           </button>
-  //         )}
-  //       </div>
-  //   if (updatedStatus !== "") {
-  //     const updatedListing = { ...listing, status: updatedStatus };
-  //     axios
-  //       .put("http://localhost:3005/put-Registration", updatedListing)
-  //       .then(() => {
-  //         setUpdateState(!updateState);
-  //       });
-  //   }
-  // };
-  // const [currentPage, setCurrentPage] = useState(1);
-// const itemsPerPage = 50;
-// const totalItems = newData?.length;
-// const totalPages = Math.ceil(totalItems / itemsPerPage);
-// let startIndex, endIndex;
-// if (typeof totalItems === "number" && !isNaN(totalItems)) {
-//   startIndex = (currentPage - 1) * itemsPerPage;
-//   endIndex = Math.min(startIndex + itemsPerPage, totalItems);
-// } else {
-//   startIndex = 0;
-//   endIndex = 0;
-// }
-// const currentItems = newData?.slice(startIndex, endIndex);
-// const generatePageButtons = () => {
-//   const buttons = [];
-//   for (let i = 1; i <= totalPages; i++) {
-//     buttons.push(
-//       <button
-//         key={i}
-//         onClick={() => setCurrentPage(i)}
-//         style={{
-//           height: "45px",
-//           width: "45px",
-//           borderRadius: "8px",
-//           border: "1px solid #e4e9ee",
-//           boxSizing: "border-box",
-//           cursor: "pointer",
-//           backgroundColor: i === currentPage ? "#f9f9f9" : "#ffffff",
-//         }}
-//       >
-//         {i}
-//       </button>
-//     );
-//   }
-//   return buttons;
-// };
-// const previousPage = () => {
-//   if (currentPage > 1) {
-//     setCurrentPage(currentPage - 1);
-//   }
-// };
-// const nextPage = () => {
-//   if (currentPage < totalPages) {
-//     setCurrentPage(currentPage + 1);
-//   }
-// };
+  useEffect(() => {
+    axios.get("http://localhost:3005/get-formData").then((res) => {
+      setRegistrationData(res.data);
+    });
+  }, []);
+  let activeUsers = registrationData.filter(
+    (items) => items.softDelete === true
+  );
+  const [currentPage, setCurrentPage] = useState(1);
+const itemsPerPage = 50;
+const totalItems = activeUsers?.length;
+const totalPages = Math.ceil(totalItems / itemsPerPage);
+let startIndex, endIndex;
+if (typeof totalItems === "number" && !isNaN(totalItems)) {
+  startIndex = (currentPage - 1) * itemsPerPage;
+  endIndex = Math.min(startIndex + itemsPerPage, totalItems);
+} else {
+  startIndex = 0;
+  endIndex = 0;
+}
+const currentItems = activeUsers?.slice(startIndex, endIndex);
+const generatePageButtons = () => {
+  const buttons = [];
+  for (let i = 1; i <= totalPages; i++) {
+    buttons.push(
+      <button
+        key={i}
+        onClick={() => setCurrentPage(i)}
+        style={{
+          height: "45px",
+          width: "45px",
+          borderRadius: "8px",
+          border: "1px solid #e4e9ee",
+          boxSizing: "border-box",
+          cursor: "pointer",
+          backgroundColor: i === currentPage ? "#f9f9f9" : "#ffffff",
+        }}
+      >
+        {i}
+      </button>
+    );
+  }
+  return buttons;
+};
+const previousPage = () => {
+  if (currentPage > 1) {
+    setCurrentPage(currentPage - 1);
+  }
+};
+const nextPage = () => {
+  if (currentPage < totalPages) {
+    setCurrentPage(currentPage + 1);
+  }
+};
   return (
     <div className="relative overflow-x-auto">
       <div className="flex justify-end">
       <DownloadTableExcel
-          filename="Requested User"
+          filename="Deactivated Accounts"
           sheet="users"
           currentTableRef={tableRef.current}
         >
@@ -167,7 +128,7 @@ const DeactivatedAccount = () => {
           </tr>
         </thead>
         <tbody>
-          {/* {currentItems?.map((items, index) => {
+          {currentItems?.map((items, index) => {
             return (
               <tr
                 className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
@@ -201,20 +162,14 @@ const DeactivatedAccount = () => {
                   {items.mobileNumber}
                 </td>
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.status}
-                </td>
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  <select onChange={(e) => handleChange(items, e)}>
-                    <option value="">Select Option</option>
-                    <option value="Active">Active</option>
-                  </select>
+                  Remarks
                 </td>
               </tr>
             );
-          })} */}
+          })}
         </tbody>
       </table>
-        {/* <div className="mt-10 flex justify-center">
+        <div className="mt-10 flex justify-center">
           {currentPage > 1 && (
             <button
               onClick={previousPage}
@@ -233,7 +188,7 @@ const DeactivatedAccount = () => {
               Next
             </button>
           )}
-        </div> */}
+        </div>
     </div>
   );
 };
