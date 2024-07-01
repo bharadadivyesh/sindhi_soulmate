@@ -86,7 +86,7 @@ const OpenTicket = () => {
   );
   return (
     <>
-      {toggle == "" && (
+      {toggle === "" && (
         <>
           <div>
             <input
@@ -101,27 +101,27 @@ const OpenTicket = () => {
             <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
               <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th className="select-none py-3 pl-8 text-xs font-bold tracking-wide text-gray-600">No.</th>
-                  <th className="select-none py-3 pl-28 text-xs font-bold tracking-wide text-gray-600">Name</th>
-                  <th className="select-none py-3 pl-28 text-xs font-bold tracking-wide text-gray-600">Email</th>
-                  <th className="select-none py-3 pl-28 text-xs font-bold tracking-wide text-gray-600">Phone</th>
-                  <th className="select-none py-3 pl-28 text-xs font-bold tracking-wide text-gray-600">Department</th>
-                  <th className="select-none py-3 pl-28 text-xs font-bold tracking-wide text-gray-600">Priority</th>
-                  <th className="select-none py-3 pl-28 text-xs font-bold tracking-wide text-gray-600">Response</th>
-                  <th className="select-none pl-28 text-xs font-bold tracking-wide text-gray-600">Action</th>
+                  <th className="select-none py-3 pl-7 text-xs font-bold tracking-wide text-gray-600">No.</th>
+                  <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Name</th>
+                  <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Email</th>
+                  <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Phone</th>
+                  <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Department</th>
+                  <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Priority</th>
+                  <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Response</th>
+                  <th className="select-none pl-20 text-xs font-bold tracking-wide text-gray-600">Action</th>
                 </tr>
               </thead>
               <tbody>
                 {filteredTickets.map((items, index) => (
                   <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800" key={index}>
                     <td className="pl-6 text-sm font-bold text-navy-700 dark:text-white">{items.ticketNumber}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">{items.name}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">{items.phone}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">{items.department}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">{items.priority}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">{items.response}</td>
-                    <td className="pl-28 text-sm font-bold text-navy-700 dark:text-white">
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">{items.name}</td>
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">{items.phone}</td>
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">{items.department}</td>
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">{items.priority}</td>
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">{items.response}</td>
+                    <td className="pl-16 text-sm font-bold text-navy-700 dark:text-white">
                       <button
                         type="button"
                         className="mb-3 mt-3 w-24 rounded-lg border border-gray-300 bg-white px-1 py-2 text-sm font-bold text-navy-700 dark:text-white"
@@ -221,7 +221,7 @@ const OpenTicket = () => {
                         </p>
                         <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
                           <b>Attachment : </b>
-                          <img src="" />
+                          <img src="" alt="" />
                         </p>
                         <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
                           Regards,
@@ -252,7 +252,7 @@ const OpenTicket = () => {
               <label className="mb-2 block text-xs font-bold tracking-wide text-gray-600 dark:text-white">Name</label>
               <input
                 type="text"
-                placeholder="Enter Name here"
+                placeholder="Name Here"
                 {...register("name", { required: true })}
                 readOnly
                 className="block w-full cursor-no-drop select-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -263,7 +263,7 @@ const OpenTicket = () => {
               <label className="mb-2 block text-xs font-bold tracking-wide text-gray-600 dark:text-white">Email Address</label>
               <input
                 type="text"
-                placeholder="Enter Email here"
+                placeholder="Email Here"
                 {...register("email", { required: true })}
                 readOnly
                 className="block w-full cursor-no-drop rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
@@ -274,6 +274,7 @@ const OpenTicket = () => {
               <label className="mb-2 block text-xs font-bold tracking-wide text-gray-600 dark:text-white">Phone Number</label>
               <input
                 type="text"
+                placeholder="PhoneNumber Here"
                 readOnly
                 {...register("phone", { required: true })}
                 className="block w-full cursor-no-drop rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
@@ -286,6 +287,7 @@ const OpenTicket = () => {
               <label className="mb-2 block text-xs font-bold tracking-wide text-gray-600 dark:text-white">Subject</label>
               <input
                 type="text"
+                placeholder="Subject Here"
                 readOnly
                 {...register("subject", { required: true })}
                 className="block w-full cursor-no-drop select-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -296,6 +298,7 @@ const OpenTicket = () => {
               <label className="mb-2 block text-xs font-bold tracking-wide text-gray-600 dark:text-white">Department</label>
               <input
                 type="text"
+                placeholder="Department Here"
                 readOnly
                 {...register("department", { required: true })}
                 className="block w-full cursor-no-drop select-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
@@ -305,6 +308,7 @@ const OpenTicket = () => {
               <label className="mb-2 block text-xs font-bold tracking-wide text-gray-600 dark:text-white">Priority</label>
               <input
                 type="text"
+                placeholder="Priority Here"
                 readOnly
                 {...register("priority", { required: true })}
                 className="block w-full cursor-no-drop select-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"/>
@@ -332,7 +336,7 @@ const OpenTicket = () => {
               className=" w-5/6 cursor-pointer rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"/>
             <button
               type="button"
-              className="mb-2 ml-10 w-48 rounded-lg border border-gray-300 bg-white p-2.5 text-sm font-medium text-gray-900 me-2"
+              className="mb-2 w-48 ml-6 rounded-lg border border-gray-300 bg-white p-2.5 text-sm font-medium text-gray-900 me-2"
               onClick={() => setCounter(counter + 1)}
             >Add More</button>
           </div>

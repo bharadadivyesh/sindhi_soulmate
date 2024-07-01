@@ -1,4 +1,4 @@
-import React, { useId } from "react";
+import React from "react";
 import { Routes, Route, Navigate, useLocation } from "react-router-dom";
 import Navbar from "components/navbar";
 import Sidebar from "components/sidebar";
@@ -14,13 +14,14 @@ import ExpireSubscription from "views/admin/tables/components/ExpireSubscription
 import DeactivatedAccount from "views/admin/tables/components/DeactivatedAccount";
 import OpenTicket from "views/admin/TicketSupport/components/OpenTicket";
 import CloseTicket from "views/admin/TicketSupport/components/CloseTicket";
-
+import CreateRoles from "views/admin/RoleManagement/components/CreateRoles";
+import ViewRoles from "views/admin/RoleManagement/components/ViewRoles";
+import ViewMembers from "views/admin/RoleManagement/components/ViewMembers";
 export default function Admin(props) {
   const { ...rest } = props;
   const location = useLocation();
   const [open, setOpen] = React.useState(true);
   const [currentRoute, setCurrentRoute] = React.useState("Main Dashboard");
-
   React.useEffect(() => {
     window.addEventListener("resize", () =>
       window.innerWidth < 1200 ? setOpen(false) : setOpen(true)
@@ -29,7 +30,6 @@ export default function Admin(props) {
   React.useEffect(() => {
     getActiveRoute(routes);
   }, [location.pathname]);
-
   const getActiveRoute = (routes) => {
     let activeRoute = "Main Dashboard";
     for (let i = 0; i < routes.length; i++) {
@@ -58,71 +58,56 @@ export default function Admin(props) {
     return routes.map((prop, key) => {
       if (prop.layout === "/admin") {
         if(location.pathname === "/admin/requested-user"){
-          return(
-            <Route path="/requested-user" element={<RequestedUser />} />
-          )
+          return(<Route path="/requested-user" element={<RequestedUser />} />)
         }
         else if(location.pathname === "/admin/active-user"){
-          return(
-                <Route path="/active-user" element={<ActiveUser />} />
-              )
+          return(<Route path="/active-user" element={<ActiveUser />} />)
         }
         else if(location.pathname === "/admin/deactiveted-user"){
-          return(
-            <Route path="/deactiveted-user" element={<DeactivatedUser />} />
-          )
+          return(<Route path="/deactiveted-user" element={<DeactivatedUser />} />)
         }
         else if(location.pathname === "/admin/rejected-user"){
-          return(
-            <Route path="/rejected-user" element={<RejectedUser />} />
-          )
+          return(<Route path="/rejected-user" element={<RejectedUser />} />)
         }
         else if(location.pathname === "/admin/terminated-user"){
-          return(
-            <Route path="/terminated-user" element={<TerminatedUser />} />
-          )
+          return(<Route path="/terminated-user" element={<TerminatedUser />} />)
         }
         else if(location.pathname === "/admin/pending-payment"){
-          return(
-            <Route path="/pending-payment" element={<PendingPayment />} />
-          )
+          return(<Route path="/pending-payment" element={<PendingPayment />} />)
         }
         else if(location.pathname === "/admin/expire-subscription"){
-          return(
-            <Route path="/expire-subscription" element={<ExpireSubscription />} />
-          )
+          return(<Route path="/expire-subscription" element={<ExpireSubscription />} />)
         }
         else if(location.pathname === "/admin/deactivated-account"){
-          return(
-            <Route path="/deactivated-account" element={<DeactivatedAccount />} />
-          )
+          return(<Route path="/deactivated-account" element={<DeactivatedAccount />} />)
         }
         else if(location.pathname === "/admin/open-ticket"){
-          return(
-            <Route path="/open-ticket" element={<OpenTicket />}/>
-          )
+          return(<Route path="/open-ticket" element={<OpenTicket />}/>)
         }
         else if(location.pathname === "/admin/close-ticket"){
-          return(
-            <Route path="/close-ticket" element={<CloseTicket />}/>
-          )
+          return(<Route path="/close-ticket" element={<CloseTicket />}/>)
         }
-        return (
-          <Route path={`/${prop.path}`} element={prop.component} key={key} />
-        );
+        else if (location.pathname === "/admin/create-roles"){
+          return(<Route path="/create-roles" element={<CreateRoles />}/>)
+        }
+        else if (location.pathname === "/admin/view-roles"){
+          return(<Route path="/view-roles" element={<ViewRoles />}/>)
+        }
+        else if (location.pathname === "/admin/view-members"){
+          return(<Route path="/view-members" element={<ViewMembers />}/>)
+        }
+          return (
+            <Route path={`/${prop.path}`} element={prop.component} key={key} />
+          );
       }
-
     });
   };
-
   document.documentElement.dir = "ltr";
   return (
     <div className="flex h-full w-full">
       <Sidebar open={open} onClose={() => setOpen(false)} />
       <div className="h-full w-full bg-lightPrimary dark:!bg-navy-900">
-        <main
-          className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}
-        >
+        <main className={`mx-[12px] h-full flex-none transition-all md:pr-2 xl:ml-[313px]`}>
           <div className="h-full">
             <Navbar
               onOpenSidenav={() => setOpen(true)}
@@ -134,15 +119,10 @@ export default function Admin(props) {
             <div className="pt-5s mx-auto mb-auto h-full min-h-[84vh] p-7 md:pr-2" >
               <Routes>
                 {getRoutes(routes)}
-                <Route
-                  path="/"
-                  element={<Navigate to="/admin/default" replace />}
-                />
-              </Routes>
+                <Route path="/" element={<Navigate to="/admin/default" replace />}/>
+                </Routes>
             </div>
-            <div className="p-3">
-              <Footer />
-            </div>
+            <div className="p-3"><Footer /></div>
           </div>
         </main>
       </div>
