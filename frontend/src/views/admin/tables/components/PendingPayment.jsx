@@ -2,7 +2,6 @@ import { useState, useEffect,useRef } from "react";
 import axios from "axios";
 import Icon from "../../../../assets/svg/icon.svg";
 import { DownloadTableExcel } from "react-export-table-to-excel";
-
 const PendingPayment = () => {
   const [registrationData, setRegistrationData] = useState([]);
   const tableRef = useRef(null);
@@ -85,87 +84,26 @@ const PendingPayment = () => {
       <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400" ref={tableRef}>
         <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              No.
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              Date
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              FirstName
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              LastName
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              Email
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              Phone
-            </th>
-            <th
-              scope="col"
-              className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600"
-            >
-              Status
-            </th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">No.</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">Date</th>
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">FirstName</th>
+            <th scope="col" className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">LastName</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">Email</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">Phone</th>
+            <th scope="col"className="px-6 py-3 text-xs font-bold tracking-wide text-gray-600">Status</th>
           </tr>
         </thead>
         <tbody>
           {currentItems?.map((items, index) => {
             return (
-              <tr
-                className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"
-                key={index}
-              >
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {index + 1}
-                </td>
-                <th
-                  scope="row"
-                  className="whitespace-nowrap px-6 py-4 text-sm font-bold text-navy-700 dark:text-white"
-                >
-                  {new Date(
-                    new Date(items.createdAt).getTime() + 5.5 * 60 * 60 * 1000
-                  ).toLocaleDateString("en-IN", {
-                    year: "numeric",
-                    month: "numeric",
-                    day: "numeric",
-                  })}
-                </th>
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.firstName}
-                </td>
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.lastName}
-                </td>
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.email}
-                </td>
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.mobileNumber}
-                </td>
-                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.status}
-                </td>
+              <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800"key={index}>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{index + 1}</td>
+                <td scope="row" className="whitespace-nowrap px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{new Date(new Date(items.createdAt).getTime() + 5.5 * 60 * 60 * 1000).toLocaleDateString("en-IN", {year: "numeric",month: "numeric",day: "numeric",})}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.firstName}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.lastName}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.mobileNumber}</td>
+                <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.status}</td>
               </tr>
             );
           })}
@@ -173,26 +111,14 @@ const PendingPayment = () => {
       </table>
       <div className="mt-10 flex justify-center">
           {currentPage > 1 && (
-            <button
-              onClick={previousPage}
-              className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm
-          font-medium me-2 hover:bg-gray-100 "
-            >
-              Previous
-            </button>
+            <button onClick={previousPage}className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 ">Previous</button>
           )}
           {generatePageButtons()}
           {currentPage < totalPages && (
-            <button
-              onClick={nextPage}
-              className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 "
-            >
-              Next
-            </button>
+            <button onClick={nextPage} className="mb-2 rounded-lg border bg-white px-5 py-2.5 text-sm font-medium me-2 hover:bg-gray-100 ">Next</button>
           )}
         </div>
     </div>
   );
 };
-
 export default PendingPayment;

@@ -35,7 +35,11 @@ const OpenTicket = () => {
   const handleReplyButtonClick = () => {setToggle("Reply");};
   useEffect(() => {
     axios.get("http://localhost:3005/tickets").then((res) => {
-      setOpenTicketData(res.data);
+      if(res.status === 200){
+        let data = res.data;
+        let tableData = data.filter(items => items.status === "open")
+        setOpenTicketData(tableData);
+      }
     });
   }, []);
   useEffect(() => {
@@ -219,6 +223,7 @@ const OpenTicket = () => {
                         <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
                           <b>Message : </b> {items?.message}
                         </p>
+                        {console.log(items.images[0])}
                         <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
                           <b>Attachment : </b>
                           <img src="" alt="" />

@@ -3,9 +3,13 @@ import React, { useEffect, useState } from 'react'
 const CloseTicket = () => {
   const [closeTicketData,setCloseTicketData] = useState([])
   useEffect(()=>{
-    axios.get("http://localhost:3005/close-tickets").then((res)=>{
-      setCloseTicketData(res.data)
-    })
+    axios.get("http://localhost:3005/tickets").then((res) => {
+      if(res.status === 200){
+        let data = res?.data;
+        let tableData = data?.filter((items) => items.status === "closed");
+        setCloseTicketData(tableData);
+      }
+    });
   },[])
   return (
     <div className="relative overflow-x-auto">
@@ -23,37 +27,18 @@ const CloseTicket = () => {
           </tr>
         </thead>
         <tbody>
-          {closeTicketData.map((items, index) => {
+          {closeTicketData?.map((items, index) => {
             return (
               <tr className="bg-white dark:bg-gray-800" key={index}>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.ticketNumber}</td>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.name}</td>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.email}</td>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.phone}</td>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.department}</td>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.priority}</td>
+                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">{items.response}</td>
                 <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.ticketNumber}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.name}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.email}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.phone}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.department}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.priority}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  {items.response}
-                </td>
-                <td className="pl-8 text-sm font-bold text-navy-700 dark:text-white">
-                  <button
-                    type="button"
-                    className="mb-3 mt-3 w-24 rounded-lg border border-gray-300 bg-white px-1 py-2 text-sm font-bold text-navy-700 dark:text-white"
-                  >
-                    View Ticket
-                  </button>
+                  <button type="button"className="mb-3 mt-3 w-24 rounded-lg border border-gray-300 bg-white px-1 py-2 text-sm font-bold text-navy-700 dark:text-white">View Ticket</button>
                 </td>
               </tr>
             );
