@@ -45,7 +45,7 @@ const routes = [
     roles: ["admin", "sub-admin"],
   },
   {
-    name: "Role Management",
+    name: "Member",
     layout: "/admin",
     path: "role-managemant",
     optionNameRoleMenagement: ["Create Roles", "View Roles", "View Members"],

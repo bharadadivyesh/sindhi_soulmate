@@ -10,7 +10,11 @@ import { RiReplyAllLine } from "react-icons/ri";
 import { HiOutlinePlus } from "react-icons/hi";
 import { FiMinus } from "react-icons/fi";
 import moment from "moment-timezone";
+import { useContext } from "react";
+import TicketSupportContext from "./TicketSupportContext";
 const OpenTicket = () => {
+  const value = useContext(TicketSupportContext);
+  let { ticketSupport } = value;
   const editor = useRef(null);
   const [counter, setCounter] = useState(1);
   const [openTicketData, setOpenTicketData] = useState([]);
@@ -27,6 +31,10 @@ const OpenTicket = () => {
       [index]: !prevState[index],
     }));
   };
+  // useEffect(()=>{
+  //   setToggle("ViewTicket");
+  //   setReplyData([ticketSupport])
+  // },[ticketSupport])
   const handleUserToggleBtnClick = () =>{setUserToggle(!userToggle)}
   const handleViewTicketClick = (items) => {
     setFormData(items);
@@ -105,7 +113,7 @@ const OpenTicket = () => {
             <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
               <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
                 <tr>
-                  <th className="select-none py-3 pl-7 text-xs font-bold tracking-wide text-gray-600">No.</th>
+                  <th className="select-none py-3 pl-7 text-xs font-bold tracking-wide text-gray-600">Ticket Number</th>
                   <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Name</th>
                   <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Email</th>
                   <th className="select-none py-3 pl-16 text-xs font-bold tracking-wide text-gray-600">Phone</th>
@@ -148,7 +156,7 @@ const OpenTicket = () => {
               <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse">
                 <span className="flex gap-3 text-sm font-semibold text-gray-900 dark:text-white">
                   <FaUser /> {formData?.name}
-                  <span className="ml-24">{formData.createdAt.split("T")[0].split("-").reverse().join("/")}
+                  <span className="ml-24">{formData?.createdAt?.split("T")[0].split("-").reverse().join("/")}
                     <span className="ml-16">{moment.tz(formData.createdAt, "Asia/Kolkata").format("HH:mm")}</span>
                   </span>
                 </span>
@@ -183,22 +191,11 @@ const OpenTicket = () => {
                   <div className="flex justify-between space-x-2 rtl:space-x-reverse">
                     <span className="flex gap-3 text-sm font-semibold text-gray-900 dark:text-white">
                       <FaUser /> Sindhi Soulmate
-                      <span className="ml-24">
-                        {items.createdAt
-                          .split("T")[0]
-                          .split("-")
-                          .reverse()
-                          .join("/")}
-                        <span className="ml-16">
-                          {moment
-                            .tz(items.createdAt, "Asia/Kolkata")
-                            .format("HH:mm")}
-                        </span>
+                      <span className="ml-24">{items?.createdAt?.split("T")[0]?.split("-")?.reverse()?.join("/")}
+                        <span className="ml-16">{moment.tz(items.createdAt, "Asia/Kolkata").format("HH:mm")}</span>
                       </span>
                     </span>
-                    <div className="flex" onClick={() => handleToggle(index)}>
-                      {isToggled ? <FiMinus /> : <HiOutlinePlus />}
-                    </div>
+                    <div className="flex" onClick={() => handleToggle(index)}>{isToggled ? <FiMinus /> : <HiOutlinePlus />}</div>
                   </div>
                   <div>
                     {isToggled && (
@@ -209,31 +206,15 @@ const OpenTicket = () => {
                           closed as we have not received a responce from you in
                           over 72 hours.
                         </p>
-                        <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          <b>Subject :</b> {items.subject}
-                        </span>
+                        <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Subject :</b> {items.subject}</span>
                         <br />
-                        <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          <b>Department :</b> {items.department}
-                        </span>
+                        <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Department :</b> {items.department}</span>
                         <br />
-                        <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          <b>Priority :</b> {items.priority}
-                        </span>
-                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          <b>Message : </b> {items?.message}
-                        </p>
-                        {console.log(items.images[0])}
-                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          <b>Attachment : </b>
-                          <img src="" alt="" />
-                        </p>
-                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          Regards,
-                        </p>
-                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                          Sindhi Soulmate Team
-                        </p>
+                        <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Priority :</b> {items.priority}</span>
+                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Message : </b> {items?.message}</p>
+                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Attachment : </b><img src="" alt="" /></p>
+                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">Regards,</p>
+                        <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">Sindhi Soulmate Team</p>
                       </>
                     )}
                   </div>

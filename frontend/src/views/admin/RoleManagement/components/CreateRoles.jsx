@@ -5,12 +5,7 @@ import { useForm } from "react-hook-form";
 const CreateRoles = () => {
   const [editItem, setEditItem] = useState(null);
   const [couponTitleTOggle, setCouponTitleToggle] = useState(false);
-
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm();
+  const {register,handleSubmit,formState: { errors }} = useForm();
   const onSubmit = async (data) => {
     console.log(data);
   };
@@ -39,23 +34,17 @@ const CreateRoles = () => {
               >
                 &times;
               </button>
-              <h2 className="text-center text-4xl dark:text-white">
-                {couponTitleTOggle === true ? "Update Role" : "Create Role"}
-              </h2>
+              <h2 className="text-center text-4xl dark:text-white">{couponTitleTOggle === true ? "Update Role" : "Create Role"}</h2>
               <form className="w-full" onSubmit={handleSubmit(onSubmit)}>
                 <div className="mb-5">
-                  <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-white">
-                    Role
-                  </label>
+                  <label className="mb-2 block text-sm font-medium text-gray-600 dark:text-white">Role</label>
                   <input
                     type="text"
                     {...register("role", { required: true })}
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
                     placeholder="Enter Role"
                   />
-                  {errors.role && (
-                    <span className="text-red-600 ">Enter Role</span>
-                  )}
+                  {errors.role && (<span className="text-red-600 ">Enter Role</span>)}
                 </div>
                 <button
                   type="submit"
@@ -71,39 +60,23 @@ const CreateRoles = () => {
       <table className="w-full text-left text-sm text-gray-500 rtl:text-right dark:text-gray-400">
         <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
           <tr>
-            <th scope="col" className="px-6 py-3">
-              Role Name
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Dashboard
-            </th>
-            <th scope="col" className="px-6 py-3">
-              All Users
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Coupon
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Ticket Support
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Full Access
-            </th>
-            <th scope="col" className="px-6 py-3">
-              View Only
-            </th>
-            <th scope="col" className="px-6 py-3">
-              Action
-            </th>
+            <th scope="col" className="px-6 py-3">Role Name</th>
+            <th scope="col" className="px-6 py-3">Dashboard</th>
+            <th scope="col" className="px-6 py-3">All Users</th>
+            <th scope="col" className="px-6 py-3">Coupon</th>
+            <th scope="col" className="px-6 py-3">Ticket Support</th>
+            <th scope="col" className="px-6 py-3">Full Access</th>
+            <th scope="col" className="px-6 py-3">View Only</th>
+            <th scope="col" className="px-6 py-3">Action</th>
           </tr>
         </thead>
         <tbody>
-          <tr class="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-            <td class="px-6 py-4">Support</td>
-            <td class="px-6 py-4">
+          <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
+            <td className="px-6 py-4">Support</td>
+            <td className="px-6 py-4">
               <select
                 id="countries"
-                class="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
               >
                 <option value="create">Create</option>
                 <option value="edit">Edit</option>
@@ -111,29 +84,12 @@ const CreateRoles = () => {
                 <option value="read">Read</option>
               </select>
             </td>
-            <td class="px-6 py-4">
-              <input type="checkbox" />
-            </td>
-            <td class="px-6 py-4">
-              <input type="checkbox" />
-            </td>
-            <td class="px-6 py-4">
-              <input type="checkbox" />
-            </td>
-            <td class="px-6 py-4">
-              <input type="checkbox" />
-            </td>
-            <td class="px-6 py-4">
-              <input type="checkbox" />
-            </td>
-            <td className="px-6 py-4">
-              <button
-                type="button"
-                class="mb-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 me-2 hover:bg-gray-100 "
-              >
-                Save
-              </button>
-            </td>
+            <td className="px-6 py-4"><input type="checkbox" /></td>
+            <td className="px-6 py-4"><input type="checkbox" /></td>
+            <td className="px-6 py-4"><input type="checkbox" /></td>
+            <td className="px-6 py-4"><input type="checkbox" /></td>
+            <td className="px-6 py-4"><input type="checkbox" /></td>
+            <td className="px-6 py-4"><button type="button"className="mb-2 rounded-lg border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-900 me-2 hover:bg-gray-100 ">Save</button></td>
           </tr>
         </tbody>
       </table>
