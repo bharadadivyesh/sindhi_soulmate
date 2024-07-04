@@ -2,14 +2,18 @@ import React, { useState } from "react";
 import { Routes, Route, Navigate } from "react-router-dom";
 import AdminLayout from "layouts/admin";
 import TicketSupportContext from "views/admin/TicketSupport/components/TicketSupportContext";
+import Login from "components/login/Login";
+// import Admin from "layouts/admin";
 
 const App = () => {
   const [ticketSupport,setTicketSupport] = useState()
+  const [ticketRenderState,setTicketRenderState] = useState("")
   return (
-    <TicketSupportContext.Provider value={{ticketSupport,setTicketSupport}}>
+    <TicketSupportContext.Provider value={{ticketSupport,ticketRenderState,setTicketSupport,setTicketRenderState}}>
         <Routes>
         <Route path="admin/*" element={<AdminLayout />} />
         <Route path="/" element={<Navigate to="/admin" replace />} />
+        <Route path="/login" element={<Login />}/>
     </Routes>
       </TicketSupportContext.Provider>
   );

@@ -26,10 +26,6 @@ export function SidebarLinks(props) {
       return routeRoles.some((role) => userRoles.includes(role));
     };
 
-  // route if condition
-  // route.layout === "/admin" admin render 
-  // isSubAdmin() && route.roles.includes("sub-admin"); sub-admin render
-  // && hasRequiredRole(route.roles)
   const createLinks = (routes) => {
     return routes.map((route, index) => {
       if (route.layout === "/admin" ) {

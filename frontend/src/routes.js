@@ -6,6 +6,9 @@ import Coupon from "views/admin/Coupon/Coupon";
 import {MdHome,MdBarChart,MdPerson} from "react-icons/md";
 import { RiTicket2Line } from "react-icons/ri";
 import { RiCoupon2Line } from "react-icons/ri";
+import { MdCardMembership } from "react-icons/md";
+import { FaQuestion } from "react-icons/fa";
+import Faqs from "views/admin/Faqs/components/Faqs";
 const routes = [
   {
     name: "Dashboard",
@@ -19,8 +22,26 @@ const routes = [
     name: "All User",
     layout: "/admin",
     path: "all-user",
-    optionPaths: ["requested-user","active-user","deactiveted-user","rejected-user","terminated-user","pending-payment","expire-subscription","deactivated-account",],
-    optionNames: ["Requested User","Active User","DeActiveted User","Rejected User","Terminated User","Pending Payment","Expired Subscription","UserDeleted Account",],
+    optionPaths: [
+      "requested-user",
+      "active-user",
+      "deactiveted-user",
+      "rejected-user",
+      "terminated-user",
+      "pending-payment",
+      "expire-subscription",
+      "deactivated-account",
+    ],
+    optionNames: [
+      "Requested User",
+      "Active User",
+      "DeActiveted User",
+      "Rejected User",
+      "Terminated User",
+      "Pending Payment",
+      "Expired Subscription",
+      "UserDeleted Account",
+    ],
     icon: <MdBarChart className="h-6 w-6" />,
     component: <AllUser />,
     roles: ["admin"],
@@ -50,8 +71,17 @@ const routes = [
     path: "role-managemant",
     optionNameRoleMenagement: ["Create Roles", "View Roles", "View Members"],
     optionPathRoleMenagement: ["create-roles", "view-roles", "view-members"],
-    icon: <MdPerson className="h-6 w-6" />,
+    icon: <MdCardMembership className="h-6 w-6" />,
     roles: ["admin", "sub-admin"],
+  },
+  {
+    name: "FAQ's",
+    layout: "/admin",
+    path: "faqs",
+    icon: <FaQuestion className="h-6,w-6" />,
+    component: <Faqs />,
+    secondary: true,
+    roles: ["admin"],
   },
   {
     name: "Profile",

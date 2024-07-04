@@ -14,9 +14,9 @@ import ExpireSubscription from "views/admin/tables/components/ExpireSubscription
 import DeactivatedAccount from "views/admin/tables/components/DeactivatedAccount";
 import OpenTicket from "views/admin/TicketSupport/components/OpenTicket";
 import CloseTicket from "views/admin/TicketSupport/components/CloseTicket";
-import CreateRoles from "views/admin/RoleManagement/components/CreateRoles";
-import ViewRoles from "views/admin/RoleManagement/components/ViewRoles";
-import ViewMembers from "views/admin/RoleManagement/components/ViewMembers";
+import CreateRoles from "../../views/admin/Member/components/CreateRoles";
+import ViewRoles from "../../views/admin/Member/components/ViewRoles";
+import ViewMembers from "../../views/admin/Member/components/ViewMembers";
 export default function Admin(props) {
   const { ...rest } = props;
   const location = useLocation();

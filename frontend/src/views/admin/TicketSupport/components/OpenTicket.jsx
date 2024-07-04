@@ -22,7 +22,7 @@ const OpenTicket = () => {
   const [formData, setFormData] = useState([]);
   const [replyData, setReplyData] = useState([]);
   const [content, setContent] = useState("");
-  const [userToggle,setUserToggle] = useState(false)
+  const [userToggle, setUserToggle] = useState(false);
   const [toggleState, setToggleState] = useState({});
   const [searchInput, setSearchInput] = useState("");
   const handleToggle = (index) => {
@@ -31,32 +31,53 @@ const OpenTicket = () => {
       [index]: !prevState[index],
     }));
   };
-  // useEffect(()=>{
-  //   setToggle("ViewTicket");
-  //   setReplyData([ticketSupport])
-  // },[ticketSupport])
-  const handleUserToggleBtnClick = () =>{setUserToggle(!userToggle)}
+  const handleUserToggleBtnClick = () => {
+    setUserToggle(!userToggle);
+  };
   const handleViewTicketClick = (items) => {
     setFormData(items);
     setToggle("ViewTicket");
   };
-  const handleReplyButtonClick = () => {setToggle("Reply");};
+  const handleReplyButtonClick = () => {
+    setToggle("Reply");
+  };
   useEffect(() => {
     axios.get("http://localhost:3005/tickets").then((res) => {
-      if(res.status === 200){
+      if (res.status === 200) {
         let data = res.data;
-        let tableData = data.filter(items => items.status === "open")
+        let tableData = data.filter((items) => items.status === "open");
         setOpenTicketData(tableData);
       }
     });
   }, []);
   useEffect(() => {
-    axios.get(`http://localhost:3005/admin-replies/${formData?.email}`)
-      .then((res) => {
-        setReplyData(res.data);
-      });
-  }, [formData]);
-  const {register,handleSubmit,setValue,reset,formState: { errors },
+     const fetchData = async () => {
+       try {
+         if (ticketSupport !== undefined) {
+           setToggle("ViewTicket");
+           const res = await axios.get(
+             `http://localhost:3005/admin-replies/${ticketSupport?.email}`
+           );
+           setReplyData(res.data);
+         } else {
+           const res = await axios.get(
+             `http://localhost:3005/admin-replies/${formData?.email}`
+           );
+           console.log(res.data);
+           setReplyData(res.data);
+         }
+       } catch (error) {
+         console.error("Error fetching data:", error);
+       }
+     };
+     fetchData()
+  }, [toggle]);
+  const {
+    register,
+    handleSubmit,
+    setValue,
+    reset,
+    formState: { errors },
   } = useForm({
     defaultValues: {
       name: "",
@@ -88,14 +109,19 @@ const OpenTicket = () => {
     formData.append("department", data.department);
     formData.append("priority", data.priority);
     formData.append("subject", data.subject);
-    await axios.post("http://localhost:3005/ticketReply", formData).then((res) => {
+    await axios
+      .post("http://localhost:3005/ticketReply", formData)
+      .then((res) => {
         toast.success(res.data.message);
         reset();
       });
   };
   const filteredTickets = openTicketData.filter(
-    (ticket) => ticket.ticketNumber.toString().includes(searchInput) || ticket.name.toLowerCase().includes(searchInput.toLowerCase())
+    (ticket) =>
+      ticket.ticketNumber.toString().includes(searchInput) ||
+      ticket.name.toLowerCase().includes(searchInput.toLowerCase())
   );
+
   return (
     <>
       {toggle === "" && (
@@ -138,9 +164,7 @@ const OpenTicket = () => {
                         type="button"
                         className="mb-3 mt-3 w-24 rounded-lg border border-gray-300 bg-white px-1 py-2 text-sm font-bold text-navy-700 dark:text-white"
                         onClick={() => handleViewTicketClick(items)}
-                      >
-                        View Ticket
-                      </button>
+                      >View Ticket</button>
                     </td>
                   </tr>
                 ))}
@@ -161,8 +185,7 @@ const OpenTicket = () => {
                   </span>
                 </span>
                 <div className="flex">
-                  {userToggle === true ? (<FiMinus onClick={handleUserToggleBtnClick} />) : (<HiOutlinePlus onClick={handleUserToggleBtnClick} />)}
-                </div>
+                  {userToggle === true ? (<FiMinus onClick={handleUserToggleBtnClick} />) : (<HiOutlinePlus onClick={handleUserToggleBtnClick} />)}</div>
               </div>
               <div>
                 {userToggle === true && (
@@ -172,12 +195,12 @@ const OpenTicket = () => {
                       the status of your ticket "Ticket number" to closed as we
                       have not received a responce from you in over 72 hours.
                     </p>
-                    <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Department :</b> {formData.department}</span>
+                    <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Department :</b> {formData?.department}</span>
                     <br />
-                    <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Priority :</b> {formData.priority}</span>
+                    <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Priority :</b> {formData?.priority}</span>
                     <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Message : </b> {formData?.message}</p>
                     <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">Regards,</p>
-                    <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">{formData.name}</p>
+                    <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">{formData?.name}</p>
                   </>
                 )}
               </div>
@@ -191,11 +214,14 @@ const OpenTicket = () => {
                   <div className="flex justify-between space-x-2 rtl:space-x-reverse">
                     <span className="flex gap-3 text-sm font-semibold text-gray-900 dark:text-white">
                       <FaUser /> Sindhi Soulmate
-                      <span className="ml-24">{items?.createdAt?.split("T")[0]?.split("-")?.reverse()?.join("/")}
+                      <span className="ml-24">
+                        {items?.createdAt?.split("T")[0]?.split("-")?.reverse()?.join("/")}
                         <span className="ml-16">{moment.tz(items.createdAt, "Asia/Kolkata").format("HH:mm")}</span>
                       </span>
                     </span>
-                    <div className="flex" onClick={() => handleToggle(index)}>{isToggled ? <FiMinus /> : <HiOutlinePlus />}</div>
+                    <div className="flex" onClick={() => handleToggle(index)}>
+                      {isToggled ? <FiMinus /> : <HiOutlinePlus />}
+                    </div>
                   </div>
                   <div>
                     {isToggled && (
@@ -222,13 +248,13 @@ const OpenTicket = () => {
               </div>
             );
           })}
-          <button
-            type="button"
-            className=" mt-6 flex w-1/12 gap-5 rounded-lg border border-gray-300 bg-white py-3 pl-7 text-sm font-medium text-gray-900"
-            onClick={handleReplyButtonClick}
-          >
-            <span className="mt-1"><RiReplyAllLine /></span>Reply
-          </button>
+          {ticketSupport === undefined && (
+            <button
+              type="button"
+              className=" mt-6 flex w-1/12 gap-5 rounded-lg border border-gray-300 bg-white py-3 pl-7 text-sm font-medium text-gray-900"
+              onClick={handleReplyButtonClick}
+            ><span className="mt-1"><RiReplyAllLine /></span>Reply</button>
+          )}
         </>
       )}
       {toggle === "Reply" && (
@@ -297,7 +323,8 @@ const OpenTicket = () => {
                 placeholder="Priority Here"
                 readOnly
                 {...register("priority", { required: true })}
-                className="block w-full cursor-no-drop select-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"/>
+                className="block w-full cursor-no-drop select-none rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+              />
             </div>
           </div>
           <div className="mb-6">
@@ -311,7 +338,8 @@ const OpenTicket = () => {
                   setContent(newContent);
                   setValue("message", newContent);
                 }}
-                className="block h-96 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"/>
+                className="block h-96 w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
+              />
             </div>
           </div>
           <div>
@@ -322,11 +350,14 @@ const OpenTicket = () => {
               className=" w-5/6 cursor-pointer rounded-lg border border-gray-300 bg-gray-50 p-2 text-sm text-gray-900 focus:outline-none dark:border-gray-600 dark:bg-gray-700 dark:text-gray-400 dark:placeholder-gray-400"/>
             <button
               type="button"
-              className="mb-2 w-48 ml-6 rounded-lg border border-gray-300 bg-white p-2.5 text-sm font-medium text-gray-900 me-2"
+              className="mb-2 ml-6 w-48 rounded-lg border border-gray-300 bg-white p-2.5 text-sm font-medium text-gray-900 me-2"
               onClick={() => setCounter(counter + 1)}
             >Add More</button>
           </div>
-          <button type="submit"className="my-4 mb-2 rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-900 me-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700">Submit</button>
+          <button
+            type="submit"
+            className="my-4 mb-2 rounded-lg border border-gray-300 bg-white px-5 py-3 text-sm font-medium text-gray-900 me-2 hover:bg-gray-100 focus:outline-none focus:ring-4 focus:ring-gray-100 dark:border-gray-600 dark:bg-gray-800 dark:text-white dark:hover:border-gray-600 dark:hover:bg-gray-700 dark:focus:ring-gray-700"
+          >Submit</button>
           <ToastContainer />
         </form>
       )}

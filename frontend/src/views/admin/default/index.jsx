@@ -50,7 +50,7 @@ const Dashboard = () => {
     (user) => new Date(user.expirationDate) < new Date()
   );
   let UserDeletedAccount = RegisteredUsers?.filter(
-    (items) => items.status === "DeactivatedAccount"
+    (items) => items.softDelete === true
   );
   const totalRevenue = RegisteredUsers?.reduce((total, user) => {
     const price = user.discountedPrice !== undefined ? user.discountedPrice : user.price;

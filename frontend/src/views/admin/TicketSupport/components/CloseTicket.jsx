@@ -5,9 +5,9 @@ import TicketSupportContext from './TicketSupportContext'
 import { useLocation, useNavigate } from 'react-router-dom'
 const CloseTicket = () => {
   const value = useContext(TicketSupportContext)
+  let { setTicketSupport, setTicketRenderState } = value;
   const location = useLocation()
   const navigate = useNavigate()
-  let {setTicketSupport } = value;
   const [closeTicketData,setCloseTicketData] = useState([])
   const [searchInput, setSearchInput] = useState("");
   useEffect(()=>{
@@ -22,6 +22,7 @@ const CloseTicket = () => {
   const handleViewTicketClick = (items) =>{
     if(location.pathname === "/admin/close-ticket"){
       setTicketSupport(items)
+      setTicketRenderState("ViewReply")
       navigate("/admin/open-ticket")
     }
   }
