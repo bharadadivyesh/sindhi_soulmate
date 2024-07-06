@@ -52,10 +52,14 @@ const Dashboard = () => {
   let UserDeletedAccount = RegisteredUsers?.filter(
     (items) => items.softDelete === true
   );
-  const totalRevenue = RegisteredUsers?.reduce((total, user) => {
-    const price = user.discountedPrice !== undefined ? user.discountedPrice : user.price;
-    let totalRevenuePrice = total + price;
-    return totalRevenuePrice;
+const totalRevenue = RegisteredUsers?.reduce((total, user) => {
+  const price =
+    user.discountedPrice !== undefined ? user.discountedPrice : user.price;
+  if (typeof price !== "number" || isNaN(price)) {
+    return total; 
+  }
+
+  return total + price;
 }, 0);
 
   return (

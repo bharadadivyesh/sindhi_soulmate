@@ -65,11 +65,12 @@ const routes = [
     secondary: true,
     roles: ["admin", "sub-admin"],
   },
+  
   {
     name: "Member",
     layout: "/admin",
     path: "role-managemant",
-    optionNameRoleMenagement: ["Create Roles", "View Roles", "View Members"],
+    optionNameRoleMenagement: ["Create Roles", "Roles", "Members"],
     optionPathRoleMenagement: ["create-roles", "view-roles", "view-members"],
     icon: <MdCardMembership className="h-6 w-6" />,
     roles: ["admin", "sub-admin"],

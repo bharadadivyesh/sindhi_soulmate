@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import Cookies from "js-cookie";
 
 const Login = () => {
   const navigate = useNavigate();
@@ -16,6 +17,8 @@ const Login = () => {
     await axios
       .post("http://localhost:3005/signin", data)
       .then((res) => {
+        let token = res.data.token;
+        Cookies.set('auth-token', token)
         toast.success(res.data.message);
         navigate("/admin");
       })

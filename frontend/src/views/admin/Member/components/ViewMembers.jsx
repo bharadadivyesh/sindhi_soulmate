@@ -13,9 +13,9 @@ const ViewMembers = () => {
     const [couponTitleTOggle, setCouponTitleToggle] = useState(false);
     const [userRolesData, setUserRoleData] = useState([]);
     const [renderComponent, setRenderComponent] = useState(false);
+    const [roles,setRoles] = useState([])
     const {register,handleSubmit,setValue,reset,formState: { errors }} = useForm();
     const onSubmit = async (data) => {
-      console.log(data);
       if (editItem) {
         await axios.put(`http://localhost:3005/update-Member/${data.email}`, data).then((res) => {
             toast.success(res.data.message);
@@ -50,6 +50,11 @@ const ViewMembers = () => {
         setUserRoleData(res.data);
       });
     }, [renderComponent]);
+    useEffect(() => {
+      axios.get("http://localhost:3005/get-Roles").then((res) => {
+        setRoles(res.data);
+      });
+    },[])
   return (
     <div className="relative overflow-x-auto">
       <div className="flex justify-end">
@@ -86,7 +91,7 @@ const ViewMembers = () => {
                   <input
                     type="text"
                     {...register("fullName", { required: true })}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                     placeholder="Enter FullName"
                   />
                   {errors.fullName && (
@@ -98,9 +103,9 @@ const ViewMembers = () => {
                     Enter Email
                   </label>
                   <input
-                    type="text"
+                    type="email"
                     {...register("email", { required: true })}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                     placeholder="Enter Email"
                   />
                   {errors.email && (
@@ -114,7 +119,7 @@ const ViewMembers = () => {
                   <input
                     type="password"
                     {...register("password", { required: true })}
-                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+                    className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                     placeholder="Enter Password"
                   />
                   {errors.password && (
@@ -129,8 +134,13 @@ const ViewMembers = () => {
                     className="block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900"
                     {...register("role", { required: true })}
                   >
-                    <option value="Admin">Admin</option>
-                    <option value="Sub-Admin">Sub-Admin</option>
+                    {roles.map((items)=>{
+                      return (
+                        <>
+                          <option value={items.role}>{items.role}</option>
+                        </>
+                      );
+                    })}
                   </select>
                   {errors.role && (
                     <span className="text-red-600">Select Status</span>
@@ -138,7 +148,7 @@ const ViewMembers = () => {
                 </div>
                 <button
                   type="submit"
-                  className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 sm:w-auto"
+                  className="w-full rounded-lg bg-blue-700 px-5 py-2.5 text-center text-sm font-medium text-white sm:w-auto"
                 >
                   Submit
                 </button>

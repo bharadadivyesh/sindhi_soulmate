@@ -50,28 +50,30 @@ const OpenTicket = () => {
       }
     });
   }, []);
+
   useEffect(() => {
-     const fetchData = async () => {
-       try {
-         if (ticketSupport !== undefined) {
-           setToggle("ViewTicket");
-           const res = await axios.get(
-             `http://localhost:3005/admin-replies/${ticketSupport?.email}`
-           );
-           setReplyData(res.data);
-         } else {
-           const res = await axios.get(
-             `http://localhost:3005/admin-replies/${formData?.email}`
-           );
-           console.log(res.data);
-           setReplyData(res.data);
-         }
-       } catch (error) {
-         console.error("Error fetching data:", error);
-       }
-     };
-     fetchData()
-  }, [toggle]);
+    const fetchData = async () => {
+      try {
+        if (ticketSupport !== undefined) {
+          console.log("if code call");
+          setToggle("ViewTicket");
+          const res = await axios.get(
+            `http://localhost:3005/admin-replies/${ticketSupport?.email}`
+          );
+          setReplyData(res.data);
+        } else {
+          const res = await axios.get(
+            `http://localhost:3005/admin-replies/${formData?.email}`
+          );
+          console.log(res.data);
+          setReplyData(res.data);
+        }
+      } catch (error) {
+        console.error("Error fetching data:", error);
+      }
+    };
+    fetchData();
+  }, [formData]);
   const {
     register,
     handleSubmit,
@@ -175,37 +177,62 @@ const OpenTicket = () => {
       )}
       {toggle === "ViewTicket" && (
         <>
-          <div className="mb-5 flex items-start">
-            <div className="leading-1.5 flex w-2/3 flex-col rounded border-gray-200 bg-[rgba(153,233,251,0.27)] p-3">
-              <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse">
-                <span className="flex gap-3 text-sm font-semibold text-gray-900 dark:text-white">
-                  <FaUser /> {formData?.name}
-                  <span className="ml-24">{formData?.createdAt?.split("T")[0].split("-").reverse().join("/")}
-                    <span className="ml-16">{moment.tz(formData.createdAt, "Asia/Kolkata").format("HH:mm")}</span>
+            <div className="mb-5 flex items-start">
+              <div className="leading-1.5 flex w-2/3 flex-col rounded border-gray-200 bg-[rgba(153,233,251,0.27)] p-3">
+                <div className="flex items-center justify-between space-x-2 rtl:space-x-reverse">
+                  <span className="flex gap-3 text-sm font-semibold text-gray-900 dark:text-white">
+                    <FaUser /> {formData?.name}
+                    <span className="ml-24">
+                      {formData?.createdAt
+                        ?.split("T")[0]
+                        .split("-")
+                        .reverse()
+                        .join("/")}
+                      <span className="ml-16">
+                        {moment
+                          .tz(formData.createdAt, "Asia/Kolkata")
+                          .format("HH:mm")}
+                      </span>
+                    </span>
                   </span>
-                </span>
-                <div className="flex">
-                  {userToggle === true ? (<FiMinus onClick={handleUserToggleBtnClick} />) : (<HiOutlinePlus onClick={handleUserToggleBtnClick} />)}</div>
-              </div>
-              <div>
-                {userToggle === true && (
-                  <>
-                    <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
-                      This is a notification to let you know that we are chaging
-                      the status of your ticket "Ticket number" to closed as we
-                      have not received a responce from you in over 72 hours.
-                    </p>
-                    <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Department :</b> {formData?.department}</span>
-                    <br />
-                    <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Priority :</b> {formData?.priority}</span>
-                    <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white"><b>Message : </b> {formData?.message}</p>
-                    <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">Regards,</p>
-                    <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">{formData?.name}</p>
-                  </>
-                )}
+                  <div className="flex">
+                    {userToggle === true ? (
+                      <FiMinus onClick={handleUserToggleBtnClick} />
+                    ) : (
+                      <HiOutlinePlus onClick={handleUserToggleBtnClick} />
+                    )}
+                  </div>
+                </div>
+                <div>
+                  {userToggle === true && (
+                    <>
+                      <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                        This is a notification to let you know that we are
+                        chaging the status of your ticket "Ticket number" to
+                        closed as we have not received a responce from you in
+                        over 72 hours.
+                      </p>
+                      <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                        <b>Department :</b> {formData?.department}
+                      </span>
+                      <br />
+                      <span className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                        <b>Priority :</b> {formData?.priority}
+                      </span>
+                      <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                        <b>Message : </b> {formData?.message}
+                      </p>
+                      <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                        Regards,
+                      </p>
+                      <p className="py-2.5 text-sm font-normal text-gray-900 dark:text-white">
+                        {formData?.name}
+                      </p>
+                    </>
+                  )}
+                </div>
               </div>
             </div>
-          </div>
           {replyData.map((items, index) => {
             const isToggled = toggleState[index];
             return (

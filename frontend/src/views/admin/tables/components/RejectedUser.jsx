@@ -28,12 +28,13 @@ const RejectedUser = () => {
     const updatedStatus = e.target.value;
     if (updatedStatus !== "") {
       const updatedListing = { ...listing, status: updatedStatus };
-      axios.put('http://localhost:3005/put-Registration', updatedListing)
+      axios.put("http://localhost:3005/put-Registration", updatedListing)
         .then(() => {
           setUpdateState(!updateState);
         });
     }
   };
+     
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
@@ -150,7 +151,7 @@ const RejectedUser = () => {
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.mobileNumber}</td>
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.remarks}</td>
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  <select onChange={(e) => handleChange(items, e)}>
+                  <select value={items.status} onChange={(e) => handleChange(items, e)}>
                     <option value="">Select Option</option>
                     <option value="Active">Active</option>
                   </select>

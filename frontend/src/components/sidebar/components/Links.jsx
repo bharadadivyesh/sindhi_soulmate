@@ -4,8 +4,6 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 export function SidebarLinks(props) {
   let location = useLocation();
   const navigate = useNavigate();
-  // code for roles
-  const [userRoles, setUserRoles] = useState(["sub-admin"]);
   const allUserPaths = ["all-user","requested-user","active-user","deactiveted-user","rejected-user","terminated-user","pending-payment","expire-subscription","deactivated-account",];
   const ticketPaths = ["ticket", "open-ticket", "close-ticket"];
   const roleManagementPaths = ["role-managemant","create-roles", "view-roles", "view-members"];
@@ -21,10 +19,6 @@ export function SidebarLinks(props) {
   if(location.pathname === "/admin/role-managemant"){
     navigate("/admin/create-roles");
   }
-  // code for roles
-    const hasRequiredRole = (routeRoles) => {
-      return routeRoles.some((role) => userRoles.includes(role));
-    };
 
   const createLinks = (routes) => {
     return routes.map((route, index) => {

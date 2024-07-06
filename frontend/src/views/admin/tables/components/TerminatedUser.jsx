@@ -23,17 +23,17 @@ const TerminatedUser = () => {
   let newData = activeUsers?.sort(
     (a, b) => new Date(b.createdAt) - new Date(a.createdAt)
   );
-  const handleChange = (listing, e) => {
-    const updatedStatus = e.target.value;
 
-    if (updatedStatus !== "") {
-      const updatedListing = { ...listing, status: updatedStatus };
-      axios.put('http://localhost:3005/put-Registration', updatedListing)
-        .then(() => {
-          setUpdateState(!updateState);
-        });
-    }
-  };
+   const handleChange = (listing, e) => {
+     const updatedStatus = e.target.value;
+     if (updatedStatus !== "") {
+       const updatedListing = { ...listing, status: updatedStatus };
+       axios.put("http://localhost:3005/put-Registration", updatedListing)
+         .then(() => {
+           setUpdateState(!updateState);
+         });
+     }
+   };
   // pagination
   const [currentPage, setCurrentPage] = useState(1);
   const itemsPerPage = 50;
@@ -150,7 +150,7 @@ const TerminatedUser = () => {
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.mobileNumber}</td>
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">{items.remarks}</td>
                 <td className="px-6 py-4 text-sm font-bold text-navy-700 dark:text-white">
-                  <select onChange={(e) => handleChange(items, e)}>
+                  <select value={items.status} onChange={(e) => handleChange(items, e)}>
                     <option value="">Select Option</option>
                     <option value="Active">Active</option>
                   </select>
