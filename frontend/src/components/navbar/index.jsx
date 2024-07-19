@@ -2,8 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 const Navbar = (props) => {
-  const { brandText } = props;
-
+  const { brandText, secondary } = props;
   return (
     <nav className="sticky top-4 z-40 flex flex-row flex-wrap items-center justify-between rounded-xl bg-white p-2">
       <div className="ml-[6px]">
@@ -29,7 +28,7 @@ const Navbar = (props) => {
             to="#"
             className="font-bold capitalize hover:text-navy-700 dark:hover:text-white"
           >
-            {brandText}
+            {secondary}
           </Link>
         </p>
       </div>

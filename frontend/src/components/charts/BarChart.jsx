@@ -12,16 +12,16 @@ class BarChart extends Component {
 
   componentDidMount() {
     this.setState({
-      chartData: this.props.chartData,
-      chartOptions: this.props.chartOptions,
+      chartData: this?.props?.chartData,
+      chartOptions: this?.props?.chartOptions,
     });
   }
 
   render() {
     return (
       <Chart
-        options={this.state.chartOptions}
-        series={this.state.chartData}
+        options={this?.state?.chartOptions}
+        series={this?.state?.chartData}
         type="bar"
         width="100%"
         height="100%"

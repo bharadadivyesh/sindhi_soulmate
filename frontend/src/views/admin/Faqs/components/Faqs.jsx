@@ -2,9 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react'
 import { FiMinus } from "react-icons/fi";
 import { HiOutlinePlus } from "react-icons/hi";
-
 const Faqs = () => {
-
   const [faqs,setFaqs] = useState([])
   const [toggleState, setToggleState] = useState({});
   useEffect(() => {
@@ -12,7 +10,6 @@ const Faqs = () => {
       setFaqs(res.data);
     });
   }, []);
-
    const handleToggle = (index) => {
      setToggleState((prevState) => ({
        ...prevState,

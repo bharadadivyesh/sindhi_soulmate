@@ -14,19 +14,24 @@ import { FaUsers } from "react-icons/fa";
 import { RiUserReceivedFill } from "react-icons/ri";
 import { columnsDataCheck, columnsDataComplex } from "./variables/columnsData";
 import Widget from "components/widget/Widget";
-import CheckTable from "views/admin/default/components/CheckTable";
+import CheckTable from "views/admin/default/components/ExpiredSubscription";
 import ComplexTable from "views/admin/default/components/ComplexTable";
 import DailyTraffic from "views/admin/default/components/DailyTraffic";
 import TaskCard from "views/admin/default/components/TaskCard";
 import tableDataCheck from "./variables/tableDataCheck.json";
 import tableDataComplex from "./variables/tableDataComplex.json";
 import { useEffect, useState } from "react";
-import axios from "axios";
+import {get} from "../../../helper/Helper"
 
 const Dashboard = () => {
   const [RegisteredUsers, setRegisterdUsers] = useState([]);
+  const requestData = {
+    path: "get-formData",
+    data: { key: "value" },
+  };
+ 
   useEffect(() => {
-    axios.get("http://localhost:3005/get-formData").then((res) => {
+    get(requestData).then((res) => {
       setRegisterdUsers(res.data);
     });
   }, []);
@@ -61,7 +66,7 @@ const totalRevenue = RegisteredUsers?.reduce((total, user) => {
 
   return total + price;
 }, 0);
-
+window.scrollTo(200, 0);
   return (
     <div>
       <div className="mt-3 grid grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-3 3xl:grid-cols-5">
@@ -128,8 +133,8 @@ const totalRevenue = RegisteredUsers?.reduce((total, user) => {
           />
         </div>
         <div className="grid grid-cols-1 gap-5 rounded-[20px] md:grid-cols-2">
-          <DailyTraffic />
           <PieChartCard />
+          <DailyTraffic />
         </div>
         <ComplexTable
           columnsData={columnsDataComplex}

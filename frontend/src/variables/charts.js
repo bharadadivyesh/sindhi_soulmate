@@ -103,7 +103,7 @@ export const barChartOptionsDailyTraffic = {
 };
 
 export const pieChartOptions = {
-  labels: ["Your files", "System", "Empty"],
+  labels: ["Male", "Female"],
   colors: ["#4318FF", "#6AD2FF", "#EFF4FB"],
   chart: {
     width: "50px",
@@ -146,25 +146,7 @@ export const pieChartOptions = {
   },
 };
 
-export const pieChartData = [63, 25, 2];
-
-export const barChartDataWeeklyRevenue = [
-  {
-    name: "PRODUCT A",
-    data: [400, 370, 330, 390, 320, 350, 360, 320],
-    color: "#6AD2Fa",
-  },
-  {
-    name: "PRODUCT B",
-    data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
-    color: "#4318FF",
-  },
-  {
-    name: "PRODUCT C",
-    data: [400, 370, 330, 390, 320, 350, 360, 320, 380],
-    color: "#EFF4FB",
-  },
-];
+export const pieChartData = [10, 25];
 
 export const barChartOptionsWeeklyRevenue = {
   chart: {
@@ -173,14 +155,13 @@ export const barChartOptionsWeeklyRevenue = {
       show: false,
     },
   },
-  // colors:['#ff3322','#faf']
   tooltip: {
     style: {
       fontSize: "12px",
       fontFamily: undefined,
-      backgroundColor: "#000000"
+      backgroundColor: "#000000",
     },
-    theme: 'dark',
+    theme: "dark",
     onDatasetHover: {
       style: {
         fontSize: "12px",
@@ -189,7 +170,15 @@ export const barChartOptionsWeeklyRevenue = {
     },
   },
   xaxis: {
-    categories: ["17", "18", "19", "20", "21", "22", "23", "24", "25"],
+    categories: [
+      "Sunday",
+      "Monday",
+      "Tuestday",
+      "Wednesday",
+      "Thursday",
+      "Friday",
+      "Saturday",
+    ],
     show: false,
     labels: {
       show: true,
@@ -261,44 +250,35 @@ export const lineChartDataTotalSpent = [
     name: "Revenue",
     data: [50, 64, 48, 66, 49, 68],
     color: "#4318FF",
-  },
-  {
-    name: "Profit",
-    data: [30, 40, 24, 46, 20, 46],
-    color: "#6AD2FF",
-  },
+  }
 ];
 
 export const lineChartOptionsTotalSpent = {
   legend: {
     show: false,
   },
-
   theme: {
     mode: "light",
   },
   chart: {
     type: "line",
-
     toolbar: {
       show: false,
     },
   },
-
   dataLabels: {
     enabled: false,
   },
   stroke: {
     curve: "smooth",
   },
-
   tooltip: {
     style: {
       fontSize: "12px",
       fontFamily: undefined,
-      backgroundColor: "#000000"
+      backgroundColor: "#000000",
     },
-    theme: 'dark',
+    theme: "dark",
     x: {
       format: "dd/MM/yy HH:mm",
     },
@@ -313,6 +293,7 @@ export const lineChartOptionsTotalSpent = {
     axisTicks: {
       show: false,
     },
+    // font color and style
     labels: {
       style: {
         colors: "#A3AED0",
@@ -322,9 +303,8 @@ export const lineChartOptionsTotalSpent = {
     },
     type: "text",
     range: undefined,
-    categories: ["SEP", "OCT", "NOV", "DEC", "JAN", "FEB"],
+    categories: ["JAN", "FAB", "MAR", "APR", "MAY", "JUNE","JULY","AUG","SEP","NOV","DES"],
   },
-
   yaxis: {
     show: false,
   },
